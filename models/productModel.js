@@ -33,9 +33,19 @@ function update(product, id) {
     });
 }
 
+function remove(id) {
+    return new Promise((resolve, reject) => {
+        const newProducts = products.filter((product) => product.id !== id);
+
+        writeDataToFile("./data/products.json", newProducts);
+        resolve();
+    });
+}
+
 module.exports = {
     findAll,
     findById,
     create,
     update,
+    remove,
 };
